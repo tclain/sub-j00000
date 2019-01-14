@@ -1,13 +1,16 @@
-import { RangeCollection } from "../src/index.js";
+import { RangeCollection } from "../src/index";
 
 // Example run
 
 describe("rangeCollection/overview", () => {
   let lastLog: unknown;
+  const nativeLog = console.log;
   beforeAll(() => {
     // mock the console.log function
     lastLog = "";
+
     console.log = jest.fn((message: unknown) => {
+      nativeLog(message);
       lastLog = message;
     });
   });
@@ -62,5 +65,6 @@ describe("rangeCollection/overview", () => {
     rc.remove([3, 19]);
     rc.print();
     // Should display: [1, 3) [19, 21)
+    expect(lastLog).toBe("[1, 3) [19, 21)");
   });
 });

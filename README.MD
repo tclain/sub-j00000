@@ -82,7 +82,7 @@ rc.print();
 // Should display: [1, 5) [10, 20)
 ```
 
-(3) First edge case, If I add a duplicate of a global bound (lower bound of my first range) and
+(3) First edge case, if a range contains the same lower and upper bound, nothing happens
 
 ```ts
 rc.add([20, 21]);
@@ -114,7 +114,7 @@ rc.print();
 // Should display: [1, 8) [10, 21)
 ```
 
-(7) Now let's talk about removal of ranges.
+(7) Now let's talk about removal of ranges. In this case the upper and lower bound are the same so the range is not significant.
 
 ```ts
 rc.remove([10, 11]);
@@ -122,11 +122,15 @@ rc.print();
 // Should display: [1, 8) [11, 21)
 ```
 
+(7) If a range is totally included in any present ranges, update the overlapped range accordingly.
+
 ```ts
 rc.remove([15, 17]);
 rc.print();
 // Should display: [1, 8) [11, 15) [17, 21)
 ```
+
+(8) If the range to remove is **totally included in a range**
 
 ```ts
 rc.remove([3, 19]);
@@ -138,6 +142,13 @@ rc.print();
 
 I could have gone fully functionnal, but the canvas was set in a class, so I opted to an OOP approach.
 
-## Assomptions
+## Assumptions
 
 the provided range is not in order, but is expected to be a pair of number.
+
+```ts
+// [1, 8) [10, 21)
+rc.remove([8, 11]);
+rc.print();
+// Should display: [1, 21)
+```

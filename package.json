@@ -1,18 +1,17 @@
 {
-  "name": "parcel-sandbox",
+  "name": "submission-j000",
   "version": "1.0.0",
-  "description": "Simple Parcel Sandbox",
-  "main": "index.html",
+  "description": "",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html"
+    "test": "jest --config jest.config.js"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.2.0",
     "@types/jest": "^23.3.12",
     "jest": "^23.6.0",
-    "parcel-bundler": "^1.6.1",
-    "ts-jest": "^23.10.5"
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.2"
   }
 }

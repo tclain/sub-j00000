@@ -1,10 +1,14 @@
-import { RangeTupple } from "./types";
+/** a range is a tuple of 2 number
+ */
+export type RangeTupple = [number, number];
+/** a range collection is an array of ranges */
+export type RangeCollectionData = Range[];
 
 /** Let's do some OOP Here for fun */
 export class Range {
   /** the inner tupple that stores the actual values */
-  private lowerBound: number = 0;
-  private upperBound: number = 0;
+  public lowerBound: number = 0;
+  public upperBound: number = 0;
 
   /**
    * Checking if something is a range
@@ -40,8 +44,16 @@ export class Range {
     this.upperBound = upper;
   };
 
-  /** serialize the range */
+  /** check if the range actually represents something meaningful
+   * (Test )
+   * @returns {boolean}
+   */
+  isSignificant = () => {
+    return this.lowerBound !== this.upperBound;
+  };
+
+  /** serialize the range to a string */
   toString = () => {
-    return `[${this.lowerBound}, ${this.lowerBound})`;
+    return `[${this.lowerBound}, ${this.upperBound})`;
   };
 }

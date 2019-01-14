@@ -1,42 +1,43 @@
-import { RangeCollectionData } from "./types";
+import { RangeCollectionData, RangeTupple, Range } from "./range";
 
 /**
  * RangeCollection class
  */
 export class RangeCollection {
-  private ranges: RangeCollectionData;
-  constructor() {
-    // with @babel/plugin-proposal-class-properties (https://git.io/vb4SL) to the 'plugins' , we can use a more straightforward way
-    this.add = this.add.bind(this);
-    this.remove = this.remove.bind(this);
-  }
+  private ranges: Range[] = [];
+  private byUpperBounds = {};
+  private byLowerBounds = {};
+
   /**
    * Adds a range to the collection
    * @param {Array<number>} range - Array of two integers that specify beginning and end of range.
    */
-  add(range) {
+  add(range: RangeTupple) {
     // TODO: implement this
-    this.range.push(range);
+    const lastIndex = this.ranges.length - 1;
+    this.ranges.push(new Range(range));
+    console.log(this.ranges.map(r => r.toString()));
   }
 
   /**
    * Removes a range from the collection
    * @param {Array<number>} range - Array of two integers that specify beginning and end of range.
    */
-  remove(range) {
+  remove(range: RangeTupple) {
     // TODO: implement this
   }
 
+  /** serialize the range collection to a string */
   toString() {
     // TODO: memoize it
-    return this.ranges.map(range => `[${range[0]}, ${range[1]})`).join(" ");
+    return this.ranges.map(range => range.toString()).join(" ");
   }
   /**
    * Prints out the list of ranges in the range collection
    */
   print() {
     // TODO: implement this
-    this.toString();
+    console.log(this.toString());
   }
 }
 

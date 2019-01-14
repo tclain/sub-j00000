@@ -7,10 +7,11 @@
  * NOTE: Feel free to add any extra member variables/functions you like.
  */
 class RangeCollection {
-  ranges = [];
-
   constructor() {
     // with @babel/plugin-proposal-class-properties (https://git.io/vb4SL) to the 'plugins' , we can use a more straightforward way
+    this.ranges = [];
+    this.add = this.add.bind(this);
+    this.remove = this.remove.bind(this);
   }
   /**
    * Adds a range to the collection
@@ -25,12 +26,13 @@ class RangeCollection {
    * Removes a range from the collection
    * @param {Array<number>} range - Array of two integers that specify beginning and end of range.
    */
-  remove = range => {
+  remove(range) {
     // TODO: implement this
-  };
+  }
 
   toString() {
-    this.ranges.map(range => `[${range[0]}, ${range[1]})`).join(" ");
+    // TODO: memoize it
+    return this.ranges.map(range => `[${range[0]}, ${range[1]})`).join(" ");
   }
   /**
    * Prints out the list of ranges in the range collection
